@@ -190,8 +190,8 @@ module Niouz
           putline "."
 
         when /^NEWNEWS\s+(.*)\s+(\d{6})\s+(\d{6})(\s+GMT)?\s+(<.+>)?$/i
-          groups = $1.split(/\s*,\s*/)
           time = read_time($2, $3, $4)
+          groups = $1.split(/\s*,\s*/)
           distribs = ( $5 ? $5.strip.delete('<> ').split(/,/) : nil )
           putline "230 list of new articles by message-id follows"
           @storage.each_article do |article|

@@ -53,12 +53,12 @@ module Niouz
     end
 
     def groups_of(article)
-      return article.groups.collect { |name| @groups[name] }
+      return article.newsgroups.collect { |name| @groups[name] }
     end
 
     def each_article
       articles = @lock.synchronize { @articles.dup }
-      articles.each { |art| yield(art) }
+      articles.each { |key, art| yield(art) }
     end
 
     def create_article(content)
